@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  redis-server: 
+    container_name: redis-server
+    image: 'redis'
+  
+  backend:
+    container_name: backend
+    build:
+      context: ./server
+      dockerfile: Dockerfile 
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis-server
+
+  # frontend:
+  #   container_name: frontend
+  #   build:
+  #     context: ./app
+  #     dockerfile: Dockerfile 
+  #   ports:
+  #     - "19006:19006"
+  #   depends_on:
+  #     - backend
+  
+  
+
+
